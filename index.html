@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>QR Code Generator</h1>
+            <p>Create custom QR codes for websites, contacts, WiFi, and more</p>
+        </header>
+
+        <!-- Main Application -->
+        <main class="main-content">
+            <!-- Left Panel: Input Forms -->
+            <div class="input-panel">
+                <!-- Tab Navigation -->
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-tab="url">
+                        <span class="tab-icon">🌐</span>
+                        <span>URL</span>
+                    </button>
+                    <button class="tab-btn" data-tab="email">
+                        <span class="tab-icon">📧</span>
+                        <span>Email</span>
+                    </button>
+                    <button class="tab-btn" data-tab="phone">
+                        <span class="tab-icon">📱</span>
+                        <span>Phone</span>
+                    </button>
+                    <button class="tab-btn" data-tab="wifi">
+                        <span class="tab-icon">📶</span>
+                        <span>WiFi</span>
+                    </button>
+                    <button class="tab-btn" data-tab="sms">
+                        <span class="tab-icon">💬</span>
+                        <span>SMS</span>
+                    </button>
+                    <button class="tab-btn" data-tab="text">
+                        <span class="tab-icon">📝</span>
+                        <span>Text</span>
+                    </button>
+                    <button class="tab-btn" data-tab="vcard">
+                        <span class="tab-icon">👤</span>
+                        <span>Contact</span>
+                    </button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- URL Tab -->
+                    <div class="tab-pane active" id="url-tab">
+                        <div class="form-group">
+                            <label class="form-label" for="url-input">Website URL</label>
+                            <input
+                                type="url"
+                                id="url-input"
+                                class="form-control qr-input"
+                                placeholder="https://example.com"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Email Tab -->
+                    <div class="tab-pane" id="email-tab">
+                        <div class="form-group">
+                            <label class="form-label" for="email-input">Email Address</label>
+                            <input
+                                type="email"
+                                id="email-input"
+                                class="form-control qr-input"
+                                placeholder="example@email.com"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email-subject">Subject (Optional)</label>
+                            <input
+                                type="text"
+                                id="email-subject"
+                                class="form-control qr-input"
+                                placeholder="Subject"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email-body">Message (Optional)</label>
+                            <textarea
+                                id="email-body"
+                                class="form-control qr-input"
+                                placeholder="Message"
+                                rows="3"
+                            ></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Phone Tab -->
+                    <div class="tab-pane" id="phone-tab">
+                        <div class="form-group">
+                            <label class="form-label" for="phone-input">Phone Number</label>
+                            <input
+                                type="tel"
+                                id="phone-input"
+                                class="form-control qr-input"
+                                placeholder="+1234567890"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <!-- WiFi Tab -->
+                    <div class="tab-pane" id="wifi-tab">
+                        <div class="form-group">
+                            <label class="form-label" for="wifi-ssid">Network Name (SSID)</label>
+                            <input
+                                type="text"
+                                id="wifi-ssid"
+                                class="form-control qr-input"
+                                placeholder="Network Name"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="wifi-password">Password</label>
+                            <input
+                                type="password"
+                                id="wifi-password"
+                                class="form-control qr-input"
+                                placeholder="Password"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="wifi-security">Security Type</label>
+                            <select id="wifi-security" class="form-control qr-input" required>
+                                <option value="WPA">WPA</option>
+                                <option value="WEP">WEP</option>
+                                <option value="None">None</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- SMS Tab -->
+                    <div class="tab-pane" id="sms-tab">
+                        <div class="form-group">
+                            <label class="form-label" for="sms-phone">Phone Number</label>
+                            <input
+                                type="tel"
+                                id="sms-phone"
+                                class="form-control qr-input"
+                                placeholder="+1234567890"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="sms-message">Message</label>
+                            <textarea
+                                id="sms-message"
+                                class="form-control qr-input"
+                                placeholder="Message"
+                                rows="3"
+                            ></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Text Tab -->
+                    <div class="tab-pane" id="text-tab">
+                        <div class="form-group">
+                            <label class="form-label" for="text-input">Text Content</label>
+                            <textarea
+                                id="text-input"
+                                class="form-control qr-input"
+                                placeholder="Enter your text here"
+                                rows="4"
+                                required
+                            ></textarea>
+                        </div>
+                    </div>
+
+                    <!-- vCard Tab -->
+                    <div class="tab-pane" id="vcard-tab">
+                        <div class="form-group">
+                            <label class="form-label" for="vcard-name">Full Name</label>
+                            <input
+                                type="text"
+                                id="vcard-name"
+                                class="form-control qr-input"
+                                placeholder="Full Name"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="vcard-phone">Phone Number</label>
+                            <input
+                                type="tel"
+                                id="vcard-phone"
+                                class="form-control qr-input"
+                                placeholder="Phone Number"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="vcard-email">Email Address</label>
+                            <input
+                                type="email"
+                                id="vcard-email"
+                                class="form-control qr-input"
+                                placeholder="Email Address"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="vcard-organization">Organization</label>
+                            <input
+                                type="text"
+                                id="vcard-organization"
+                                class="form-control qr-input"
+                                placeholder="Organization"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customization Options -->
+                <div class="customization-panel">
+                    <h3>Customization Options</h3>
+
+                    <div class="customization-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="qr-size">Size</label>
+                            <select id="qr-size" class="form-control customize-input">
+                                <option value="200">Small (200px)</option>
+                                <option value="300" selected>Medium (300px)</option>
+                                <option value="400">Large (400px)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="error-correction">Error Correction</label>
+                            <select id="error-correction" class="form-control customize-input">
+                                <option value="L">Low (~7%)</option>
+                                <option value="M" selected>Medium (~15%)</option>
+                                <option value="Q">Quartile (~25%)</option>
+                                <option value="H">High (~30%)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="fg-color">Foreground Color</label>
+                            <input
+                                type="color"
+                                id="fg-color"
+                                class="form-control color-input customize-input"
+                                value="#000000"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="bg-color">Background Color</label>
+                            <input
+                                type="color"
+                                id="bg-color"
+                                class="form-control color-input customize-input"
+                                value="#ffffff"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="border-size">Border (px)</label>
+                            <input
+                                type="range"
+                                id="border-size"
+                                class="form-control customize-input"
+                                min="0"
+                                max="20"
+                                step="1"
+                                value="0"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" class="btn btn--secondary btn--full-width" id="reset-btn">
+                            Reset All Fields
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: QR Code Preview -->
+            <div class="preview-panel">
+                <div class="preview-header">
+                    <h3>QR Code Preview</h3>
+                    <div class="preview-status">
+                        <span class="status status--info" id="preview-status">Ready to generate</span>
+                    </div>
+                </div>
+
+                <div class="qr-preview-container" id="qr-preview-area">
+                    <div id="qr-code-container">
+                        <div class="qr-placeholder" id="qr-placeholder">
+                            <div class="placeholder-icon">📱</div>
+                            <p>Enter information to generate QR code</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="preview-actions">
+                    <button type="button" class="btn btn--primary btn--full-width" id="download-btn" disabled>
+                        Download QR Code
+                    </button>
+                </div>
+
+                <div class="preview-info">
+                    <p class="info-text">
+                        <strong>Tip:</strong> QR codes are generated automatically as you type. Make sure to
+                        test your QR code before using it!
+                    </p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
